@@ -1,28 +1,49 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react'
 
-class App extends Component {
-  render() {
+import ReactDOM from "react-dom";
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
+import Thumbnail from "./Thumbnail";
+import * as html2canvas from "html2canvas";
+
+const Wrapper = styled.div``
+
+const App = (props) => {
+
+    // const [background, setBackground] = useState('linear-gradient(180deg,#b33,#a22)');
+    // const [fontColor, setFontColor] = useState('white');
+    // const [fontSize, setFontSize] = useState('5em');
+
+    const [background, setBackground] = useState('linear-gradient(180deg,#b33,#a22)');
+    const [icon, setIcon] = useState({name: 'fab hacker-news', size: '4em', color: 'white'})
+    const [text, setText] = useState({content: 'Hacker News', size: '4em', color: 'white'})
+
+    let thumbnail = React.createRef();
+
+    const download = () => {
+        html2canvas(thumbnail.current).then((canvas) => {
+            let url = canvas.toDataURL("image/png");
+            let a = document.createElement('a');
+            a.href = url;
+            a.setAttribute('download', text);
+            a.click();
+        });
+    }
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+        <Wrapper>
+            <Thumbnail
+                ref={thumbnail}
+                text={text}
+                background={background}
+                icon={icon}/>
+
+            <button onClick={download}>Download</button>
+        </Wrapper>
     );
-  }
 }
+
+
+App.propTypes = {};
 
 export default App;

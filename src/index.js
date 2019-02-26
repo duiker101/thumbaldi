@@ -2,11 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import { library } from '@fortawesome/fontawesome-svg-core';
+import * as core from '@fortawesome/free-solid-svg-icons';
+import * as brands from '@fortawesome/free-brands-svg-icons';
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+
+function processIcons(icons){
+    for(let icon in icons){
+        if(icons.hasOwnProperty(icon)){
+            if(icon !== 'fas' && icon !== 'prefix')
+                library.add(icons[icon]);
+        }
+    }
+}
+
+processIcons(core);
+processIcons(brands);
+
+ReactDOM.render(<App/>, document.getElementById('root'));
