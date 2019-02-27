@@ -1,43 +1,60 @@
 import React, {useState} from 'react'
 
 import ReactDOM from "react-dom";
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import Thumbnail from "./Thumbnail";
-import * as html2canvas from "html2canvas";
+import Thumbnail from "./components/Thumbnail";
+import ColorPicker from "./components/color/ColorPicker";
+import IconPicker from "./components/IconPicker";
+import TextPicker from "./components/TextPicker";
+import * as htmlToImage from "html-to-image";
 
 const Wrapper = styled.div``
+const ThumbWrapper = styled.div`
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    width:440px;
+    //margin:auto;
+`
 
 const App = (props) => {
-
-    // const [background, setBackground] = useState('linear-gradient(180deg,#b33,#a22)');
-    // const [fontColor, setFontColor] = useState('white');
-    // const [fontSize, setFontSize] = useState('5em');
-
-    const [background, setBackground] = useState('linear-gradient(180deg,#b33,#a22)');
-    const [icon, setIcon] = useState({name: 'fab hacker-news', size: '4em', color: 'white'})
-    const [text, setText] = useState({content: 'Hacker News', size: '4em', color: 'white'})
+    const [background, setBackground] = useState('red');
+    const [icon, setIcon] = useState({name: 'fas anchor', size: '4x', color: 'white'})
+    const [title, setTitle] = useState({content: 'Vivaldi', size: '4em', color: 'white'})
+    const [subtitle, setSubtitle] = useState({content: 'Subtitle', size: '2em', color: 'white'})
 
     let thumbnail = React.createRef();
 
     const download = () => {
-        html2canvas(thumbnail.current).then((canvas) => {
-            let url = canvas.toDataURL("image/png");
-            let a = document.createElement('a');
-            a.href = url;
-            a.setAttribute('download', text);
-            a.click();
-        });
+        htmlToImage.toPng(ReactDOM.findDOMNode(thumbnail.current))
+            .then(function (url) {
+                let a = document.createElement('a');
+                a.href = url;
+                let filename = title.content;
+                if (subtitle.content.length > 0)
+                    filename += '_' + subtitle.content;
+                a.setAttribute('download', filename + '.png');
+                a.click();
+            })
+            .catch(function (error) {
+                console.error('oops, something went wrong!', error);
+            });
     }
+
 
     return (
         <Wrapper>
-            <Thumbnail
-                ref={thumbnail}
-                text={text}
-                background={background}
-                icon={icon}/>
+            <ThumbWrapper>
+                <Thumbnail
+                    ref={thumbnail}
+                    title={title}
+                    subtitle={subtitle}
+                    background={background}
+                    icon={icon}/>
+            </ThumbWrapper>
 
+            <ColorPicker color={background} onChange={setBackground}/>
+            <IconPicker icon={icon} onChange={setIcon}/>
+            <TextPicker text={title} onChange={setTitle}/>
+            <TextPicker text={subtitle} onChange={setSubtitle}/>
             <button onClick={download}>Download</button>
         </Wrapper>
     );
