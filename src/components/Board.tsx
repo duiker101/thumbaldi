@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import Scrollbars from "react-custom-scrollbars";
+import Thumbnail from "./Thumbnail";
+import useThumbnail from "../store/ThumbnailContext";
 
 const Wrapper = styled.div`
     display: grid;
@@ -8,23 +10,18 @@ const Wrapper = styled.div`
     grid-gap: 2em;
     align-items: center;
     padding: 2em 0;
-`
-
-const GG = styled.div`
-    background: purple;
-    width: 230px;
-    height: 190px;
-    margin:auto;
-    
-    box-shadow: 0px 3px 4px rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.1);
+    height: 100%;
 `
 
 const Board = (props: Props) => {
+    const {getAllThumbnails} = useThumbnail();
     return (
         <Scrollbars>
-            {/*{getVal()}*/}
             <Wrapper>
-                {[...Array(100)].map(() => <GG/>)}
+                {getAllThumbnails().map(t =>
+                    <Thumbnail {...t}/>
+                )}
             </Wrapper>
         </Scrollbars>
     );

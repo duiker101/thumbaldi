@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {ThumbnailProvider} from "./ThumbnailContext";
 
 const StateProvider = (props) => {
