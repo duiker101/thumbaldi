@@ -1,11 +1,12 @@
-import React, {Component} from 'react'
+import React, {Component, useContext} from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import useThumbnail from "../ThumbnailContext";
 
 const Wrapper = styled.div`
-    background: ${p => p.background};
-    color: ${p => p.color};
+    // background: ${p => p.background};
+    // color: ${p => p.color};
     width: 440px;
     height: 360px;
     
@@ -30,18 +31,21 @@ const Icon = styled.div`
     top:${p => p.top};
 `;
 
-class Thumbnail extends Component {
-    render() {
-        return (
-            <Wrapper background={this.props.background}>
-                <Icon top={'60px'} {...this.props.icon}>
-                    <FontAwesomeIcon icon={this.props.icon.name.split(' ')} {...this.props.icon}/>
-                </Icon>
-                <Title top={'130px'} {...this.props.title}>{this.props.title.content}</Title>
-                <Title top={'220px'} {...this.props.subtitle}>{this.props.subtitle.content}</Title>
-            </Wrapper>
-        );
-    }
+const Thumbnail = (props) => {
+
+    // const [t,setT] = useContext(UserContext)
+    const {getVal, changeVal} = useThumbnail();
+
+    return (
+        <Wrapper>
+            <button onClick={() => changeVal('gg')}>{getVal()}</button>
+            {/*<Icon top={'60px'} {...props.icon}>*/}
+            {/*    <FontAwesomeIcon icon={props.icon.name.split(' ')} {...props.icon}/>*/}
+            {/*</Icon>*/}
+            {/*<Title top={'130px'} {...props.title}>{props.title.content}</Title>*/}
+            {/*<Title top={'220px'} {...props.subtitle}>{props.subtitle.content}</Title>*/}
+        </Wrapper>
+    )
 }
 
 //

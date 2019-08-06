@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {createContext, useState, useContext} from 'react'
 
 import ReactDOM from "react-dom";
 import styled from 'styled-components'
@@ -7,8 +7,21 @@ import ColorPicker from "./components/color/ColorPicker";
 import IconPicker from "./components/IconPicker";
 import TextPicker from "./components/TextPicker";
 import * as htmlToImage from "html-to-image";
+import StateProvider from "./StateProvider";
+import Sidebar from "./components/Sidebar";
+import Board from "./components/Board";
 
-const Wrapper = styled.div``
+
+const ThemeContext = createContext({});
+
+const Wrapper = styled.div`
+    background: #033a50;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    max-height: 100%;
+    height: 100%;
+`
+
 const ThumbWrapper = styled.div`
     box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
     width:440px;
@@ -39,24 +52,28 @@ const App = (props) => {
             });
     }
 
-
     return (
-        <Wrapper>
-            <ThumbWrapper>
-                <Thumbnail
-                    ref={thumbnail}
-                    title={title}
-                    subtitle={subtitle}
-                    background={background}
-                    icon={icon}/>
-            </ThumbWrapper>
 
-            <ColorPicker color={background} onChange={setBackground}/>
-            <IconPicker icon={icon} onChange={setIcon}/>
-            <TextPicker text={title} onChange={setTitle}/>
-            <TextPicker text={subtitle} onChange={setSubtitle}/>
-            <button onClick={download}>Download</button>
-        </Wrapper>
+        <StateProvider>
+            <Wrapper>
+                {/*<ThumbWrapper>*/}
+                <Sidebar/>
+                {/*<Thumbnail*/}
+                {/*    ref={thumbnail}*/}
+                {/*    title={title}*/}
+                {/*    subtitle={subtitle}*/}
+                {/*    background={background}*/}
+                {/*    icon={icon}/>*/}
+                <Board/>
+                {/*</ThumbWrapper>*/}
+
+                {/*<ColorPicker color={background} onChange={setBackground}/>*/}
+                {/*<IconPicker icon={icon} onChange={setIcon}/>*/}
+                {/*<TextPicker text={title} onChange={setTitle}/>*/}
+                {/*<TextPicker text={subtitle} onChange={setSubtitle}/>*/}
+                {/*<button onClick={download}>Download</button>*/}
+            </Wrapper>
+        </StateProvider>
     );
 }
 
