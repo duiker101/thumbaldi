@@ -2,11 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 import {IColor, IRect, ISolidColor} from "../../store/ThumbnailContext";
 
-const Wrapper = styled.div`
-  position:absolute;
-  background: ${p => p.color};
-  height: 100%;
-  width: 100%;
+const Wrapper = styled.div<any>`
+    position:absolute;
+    background: ${p => p.color};
+    top:${p => p.y};
+    left:${p => p.x};
+    width:${p => p.width};
+    height:${p => p.height};
 `
 
 const ThumbRect: React.FC<IRect> = (props) => {
@@ -16,7 +18,7 @@ const ThumbRect: React.FC<IRect> = (props) => {
 
     }
     return (
-        <Wrapper color={getColorString(props.fill)}>
+        <Wrapper {...props} color={getColorString(props.fill)}>
         </Wrapper>
     );
 }

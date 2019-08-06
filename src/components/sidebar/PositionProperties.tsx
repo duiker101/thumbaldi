@@ -1,6 +1,16 @@
 import React, {useEffect, useState} from 'react'
 import styled from 'styled-components'
-import Setting from "./Setting";
+import Property from "./Property";
+
+const Wrapper = styled.div`
+    display:grid;
+    grid-template-columns: 50% 50%;
+    grid-gap:.5em;
+    padding-right:.5em;
+    input{
+        width: 60%;
+    }
+`
 
 const PositionProperties: React.FC<Props> = (props) => {
     const [x, setX] = useState(props.x)
@@ -11,14 +21,14 @@ const PositionProperties: React.FC<Props> = (props) => {
     }, [x, y])
 
     return (
-        <>
-            <Setting title={'X'}>
+        <Wrapper>
+            <Property title={'X'}>
                 <input value={x} onChange={e => setX(e.target.value)}/>
-            </Setting>
-            <Setting title={'Y'}>
+            </Property>
+            <Property title={'Y'}>
                 <input value={y} onChange={e => setY(e.target.value)}/>
-            </Setting>
-        </>
+            </Property>
+        </Wrapper>
     );
 }
 

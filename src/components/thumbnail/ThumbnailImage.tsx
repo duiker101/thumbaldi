@@ -5,8 +5,8 @@ import ThumbRect from "./ThumbRect";
 import {ILayer, IRect, IText} from "../../store/ThumbnailContext";
 
 const Wrapper = styled.div`
-    background: purple;
-    border:1px solid rgba(0,0,0,0.5);
+    border:1px solid rgba(0,0,0,0.2);
+    border-radius: 4px;
     width: 230px;
     height: 190px;
     margin:auto;
@@ -20,9 +20,9 @@ const ThumbnailImage = (props: Props) => {
         <Wrapper>
             {props.layers.map(l => {
                     if (l.type === 'text')
-                        return <ThumbText {...l as IText}/>
+                        return <ThumbText key={l.id} {...l as IText}/>
                     if (l.type === 'rect')
-                        return <ThumbRect {...l as IRect}/>
+                        return <ThumbRect key={l.id} {...l as IRect}/>
                 }
             )}
         </Wrapper>

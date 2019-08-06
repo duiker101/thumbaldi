@@ -29,7 +29,7 @@ const Sidebar: React.FC = () => {
         <Wrapper>
             <Header>Header</Header>
             <Scrollbars>
-                {thumbnail.name}
+                {/*{thumbnail.name}*/}
                 {thumbnail.layers.map(l => {
                         if (l.type === 'rect')
                             return <RectSetting key={l.id} {...l as IRect} />

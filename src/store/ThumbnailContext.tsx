@@ -20,7 +20,12 @@ export interface IRect extends ISolid {
 }
 
 export interface IText extends ISolid {
-    text: string
+    text: string,
+    align: string,
+    fontSize: string,
+    fontFamily: string,
+    fontWeight: string,
+    color: ISolidColor
 }
 
 export interface ISolid extends ILayer {
