@@ -15,7 +15,6 @@ const Wrapper = styled.div`
 
 const App = (props) => {
     return (
-
         <StateProvider>
             <Wrapper>
                 <Sidebar/>

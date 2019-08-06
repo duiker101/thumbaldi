@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import useThumbnail from "../store/ThumbnailContext";
-import ThumbnailImage from "./ThumbnailImage";
+import ThumbnailImage from "./thumbnail/ThumbnailImage";
 
 const Wrapper = styled.div`
     //width: 440px;

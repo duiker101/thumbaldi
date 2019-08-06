@@ -4,16 +4,15 @@ import styled from 'styled-components'
 const Wrapper = styled.div`
 `
 
-const TextLayerSetting = (props: Props) => {
+const ThumbnailSetting = (props: Props) => {
     return (
         <Wrapper>
-            {props.text}
         </Wrapper>
     );
 }
 
 interface Props {
-    // text:
+
 }
 
-export default TextLayerSetting;
+export default ThumbnailSetting;

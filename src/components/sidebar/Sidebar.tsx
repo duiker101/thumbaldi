@@ -1,9 +1,10 @@
 import React from 'react'
-import useThumbnail from '../../store/ThumbnailContext'
+import useThumbnail, {IRect, IText} from '../../store/ThumbnailContext'
 import styled from 'styled-components'
 import Scrollbars from 'react-custom-scrollbars';
 import LayerSetting from "./LayerSetting";
-import TextLayerSetting from "./TextLayerSetting";
+import TextSetting from "./TextSetting";
+import RectSetting from "./RectSetting";
 
 const Wrapper = styled.div`
   width: 300px;
@@ -20,11 +21,6 @@ const Header = styled.div`
     padding: .8em;
 `
 
-const GG = styled.div`
-    margin:10px;
-    height: 200px;
-`
-
 const Sidebar: React.FC = () => {
     const {getSelectedThumbnail} = useThumbnail();
     const thumbnail = getSelectedThumbnail()
@@ -35,8 +31,11 @@ const Sidebar: React.FC = () => {
             <Scrollbars>
                 {thumbnail.name}
                 {thumbnail.layers.map(l => {
+                        if (l.type === 'rect')
+                            return <RectSetting key={l.id} {...l as IRect} />
                         if (l.type === 'text')
-                            return <TextLayerSetting {...l} />
+                            return <TextSetting key={l.id} {...l as IText} />
+                    return l.type
                     }
                 )}
 

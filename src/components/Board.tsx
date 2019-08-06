@@ -3,6 +3,10 @@ import styled from 'styled-components'
 import Scrollbars from "react-custom-scrollbars";
 import Thumbnail from "./Thumbnail";
 import useThumbnail from "../store/ThumbnailContext";
+import AddThumbnail from "./AddThumbnail";
+import SolidColorPicker from "./color/SolidColorPicker";
+import ColorButton from "./color/ColorButton";
+import LinearGradientPicker from "./color/LinearGradientPicker";
 
 const Wrapper = styled.div`
     display: grid;
@@ -20,8 +24,10 @@ const Board = (props: Props) => {
         <Scrollbars>
             <Wrapper>
                 {getAllThumbnails().map(t =>
-                    <Thumbnail {...t}/>
+                    <Thumbnail key={t.id} {...t}/>
                 )}
+                {/*<AddThumbnail />*/}
+                {/*<LinearGradientPicker color={''} onChange={()=>{}}/>*/}
             </Wrapper>
         </Scrollbars>
     );
