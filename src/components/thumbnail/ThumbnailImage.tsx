@@ -19,7 +19,7 @@ const Wrapper = styled.div`
 
 const ThumbnailImage = (props: Props) => {
     return (
-        <Wrapper>
+        <Wrapper onClick={props.onClick}>
             {props.layers.map(l => {
                     if (l.type === 'text')
                         return <ThumbText key={l.id} {...l as IText}/>
@@ -35,6 +35,7 @@ const ThumbnailImage = (props: Props) => {
 
 interface Props {
     layers: ILayer[]
+    onClick:()=>void
 }
 
 export default ThumbnailImage;

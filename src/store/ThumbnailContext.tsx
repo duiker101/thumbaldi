@@ -47,8 +47,7 @@ export interface ISolid extends ILayer {
 
 export interface ILayer {
     id: string,
-    type: string,
-    index: number
+    type: string
 }
 
 export interface IThumbnail {
@@ -65,14 +64,9 @@ const defaultValue = {
             id: firstId,
             name: 'Test',
             layers: [
-                {
-                    id: uuid4(),
-                    index: 0,
-                    type: 'rect',
-                    fill: {type: 'solid', color: '#ff0000'}
-                },
-                {id: uuid4(), index: 1, type: 'text', text: 'Hello'},
-                {id: uuid4(), index: 2, type: 'image', url: 'https://cdn.svgporn.com/logos/vivaldi.svg'}
+                {id: uuid4(), type: 'rect', fill: {type: 'solid', color: '#ff0000'}},
+                {id: uuid4(), type: 'text', text: 'Hello'},
+                {id: uuid4(), type: 'image', url: 'https://cdn.svgporn.com/logos/vivaldi.svg'}
             ]
         }
     ]
@@ -106,6 +100,26 @@ const useThumbnail = () => {
         }))
     }
 
+    function addThumbnail(): void {
+        setState(produce(({thumbnails}) => {
+            thumbnails.push({id: uuid4(), name: 'New Thumbnail', layers: []})
+        }))
+    }
+
+    function addLayer(thumbnailId, layer: any): void {
+        setState(produce(({thumbnails}) => {
+            filterThumbnailById(thumbnails, thumbnailId).layers.push(layer)
+        }))
+    }
+
+    function getThumbnailById(id: string): IThumbnail {
+        return state.thumbnails[state.thumbnails.findIndex(t => t.id === id)]
+    }
+
+    function filterThumbnailById(thumbnails: IThumbnail[], id: string): IThumbnail {
+        return thumbnails[thumbnails.findIndex(t => t.id === id)]
+    }
+
     function getAllThumbnails(): IThumbnail[] {
         return state.thumbnails
     }
@@ -118,11 +132,19 @@ const useThumbnail = () => {
         return state.selected
     }
 
+    function setSelectedThumbnailId(id: string): void {
+        setState({...state, selected: id})
+    }
+
     return {
         getSelectedThumbnail,
         getSelectedThumbnailId,
+        getThumbnailById,
+        setSelectedThumbnailId,
         getAllThumbnails,
         setThumbnail,
+        addThumbnail,
+        addLayer,
         setLayer
     }
 };

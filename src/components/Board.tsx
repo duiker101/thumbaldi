@@ -9,27 +9,44 @@ import ColorButton from "./color/ColorButton";
 import LinearGradientPicker from "./color/LinearGradientPicker";
 
 const Wrapper = styled.div`
+    position: relative;
+    height: 100%;
+    min-height: 100%;
+`
+
+const Controls = styled.div`
+    position: absolute;
+    right: 0;
+    top:0;
+`
+
+const Grid = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
     grid-gap: 2em;
     align-items: center;
     padding: 2em 0;
     background: rgba(0,0,0,0.1);
-    height: 100%;
+    min-height: 100%;
 `
 
 const Board = (props: Props) => {
-    const {getAllThumbnails} = useThumbnail();
+    const {getAllThumbnails, addThumbnail} = useThumbnail();
     return (
-        <Scrollbars>
-            <Wrapper>
-                {getAllThumbnails().map(t =>
-                    <Thumbnail key={t.id} {...t}/>
-                )}
-                {/*<AddThumbnail />*/}
-                {/*<LinearGradientPicker color={''} onChange={()=>{}}/>*/}
-            </Wrapper>
-        </Scrollbars>
+        <Wrapper>
+            <Scrollbars >
+                <Grid>
+                    {getAllThumbnails().map(t =>
+                        <Thumbnail key={t.id} {...t}/>
+                    )}
+                    {/*<AddThumbnail />*/}
+                    {/*<LinearGradientPicker color={''} onChange={()=>{}}/>*/}
+                </Grid>
+            </Scrollbars>
+            <Controls>
+                <button onClick={addThumbnail}>Add</button>
+            </Controls>
+        </Wrapper>
     );
 }
 

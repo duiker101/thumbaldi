@@ -3,8 +3,8 @@ import styled from 'styled-components'
 import {IImage} from "../../store/ThumbnailContext";
 
 const Wrapper = styled.div<any>`
-    background: url(${p => p.url});
-    background-size: cover;
+    background: url(${p => p.url}) no-repeat;
+    background-size: contain;
     position: absolute;
     top:${p => p.y};
     left:${p => p.x};

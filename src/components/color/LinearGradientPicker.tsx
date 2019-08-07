@@ -23,23 +23,12 @@ const LinearGradientPicker: React.FC<Props> = (props) => {
 
     return (
         <Wrapper>
-            {/*<ColorButton color={colors[0].color}>*/}
-            {/*    <SketchPicker color={colors[0].color} onChangeComplete={c => setColors(prev => {*/}
-            {/*        return {...prev, 0: {color: c.hex, type: 'solid'} as ISolidColor}*/}
-            {/*    })}/>*/}
-            {/*</ColorButton>*/}
-            {/*<ColorButton color={colors[1].color}>*/}
-            {/*    <SketchPicker color={colors[1].color} onChangeComplete={c => setColors(prev => {*/}
-            {/*        return {...prev, 1: {color: c.hex, type: 'solid'} as ISolidColor}*/}
-            {/*    })}/>*/}
-            {/*</ColorButton>*/}
             <SolidColorPicker color={colors[0] as ISolidColor} onChange={c=>setColors(prev=>{
                        return {...prev, 0: c as ISolidColor}
             })}/>
             <SolidColorPicker color={colors[1] as ISolidColor} onChange={c=>setColors(prev=>{
                 return {...prev, 1: c as ISolidColor}
             })}/>
-            {/*<SolidColorPicker color={colors[0] as ISolidColor} />*/}
             <input
                 value={rotation}
                 onChange={(i) => setRotation(i.target.value)}
