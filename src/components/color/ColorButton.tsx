@@ -3,16 +3,24 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
+    height: 25px;
 `
 
 const Outer = styled.button`
     width:100%;
     height:100%;
+    background: #ffffff21;
+    border:1px solid black;
+    max-width: 50px;
+    color:black;
 `
 
 const Popover = styled.div`
     position:absolute;
-    z-index:2;
+    z-index:2000;
+    input{
+        color:black;
+    }
 `
 
 const Cover = styled.div`

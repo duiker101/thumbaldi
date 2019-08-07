@@ -4,7 +4,7 @@ import styled from 'styled-components'
 const Wrapper = styled.div`
 `
 
-const LayerSetting = (props: Props) => {
+const ThumbIcon: React.FC<Props> = (props) => {
     return (
         <Wrapper>
         </Wrapper>
@@ -15,4 +15,4 @@ interface Props {
 
 }
 
-export default LayerSetting;
+export default ThumbIcon;

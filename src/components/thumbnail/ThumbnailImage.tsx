@@ -2,7 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import ThumbText from "./ThumbText";
 import ThumbRect from "./ThumbRect";
-import {ILayer, IRect, IText} from "../../store/ThumbnailContext";
+import {IImage, ILayer, IRect, IText} from "../../store/ThumbnailContext";
+import ThumbImage from "./ThumbImage";
 
 const Wrapper = styled.div`
     border:1px solid rgba(0,0,0,0.2);
@@ -13,6 +14,7 @@ const Wrapper = styled.div`
     
     box-shadow: 0 3px 4px rgba(0,0,0,0.2);
     position:relative;
+    overflow: hidden;
 `
 
 const ThumbnailImage = (props: Props) => {
@@ -23,6 +25,8 @@ const ThumbnailImage = (props: Props) => {
                         return <ThumbText key={l.id} {...l as IText}/>
                     if (l.type === 'rect')
                         return <ThumbRect key={l.id} {...l as IRect}/>
+                    if (l.type === 'image')
+                        return <ThumbImage key={l.id} {...l as IImage}/>
                 }
             )}
         </Wrapper>

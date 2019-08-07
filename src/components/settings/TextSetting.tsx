@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import styled from 'styled-components'
 import useThumbnail, {IText} from "../../store/ThumbnailContext";
-import PositionProperties from "./PositionProperties";
-import SizeProperties from "./SizeProperties";
-import Settings from "./Settings";
-import Property from "./Property";
+import PositionProperties from "./common/PositionProperties";
+import SizeProperties from "./common/SizeProperties";
+import Settings from "./common/Settings";
+import Property from "./common/Property";
 import SolidColorPicker from "../color/SolidColorPicker";
 
 
@@ -15,7 +15,7 @@ const TextSetting: React.FC<IText> = (props) => {
     const [fontSize, setSize] = useState(props.fontSize)
     const [fontFamily, setFamily] = useState(props.fontFamily)
     const [fontWeight, setWeight] = useState(props.fontWeight)
-    const [color, setColor] = useState(props.color.color)
+    const [color, setColor] = useState(props.color)
 
     const [{x, y}, setXY] = useState({x: props.x, y: props.y})
     const [{width, height}, setWH] = useState({width: props.width, height: props.height})
@@ -28,7 +28,7 @@ const TextSetting: React.FC<IText> = (props) => {
             x, y,
             align,
             fontSize, fontFamily, fontWeight,
-            color: {type: 'solid', color: color}
+            color
         })
     }, [text, x, y, width, height, align, fontWeight, fontFamily, fontSize, color])
 
@@ -37,7 +37,7 @@ const TextSetting: React.FC<IText> = (props) => {
             <PositionProperties x={x} y={y} onChange={(x, y) => setXY({x, y})}/>
             <SizeProperties {...{width, height}} onChange={(width, height) => setWH({width, height})}/>
             <Property title={'Text'}>
-                <input value={text} onChange={e => setText(e.target.value)}/>
+                <input className={'large'} value={text} onChange={e => setText(e.target.value)}/>
             </Property>
             <Property title={'Align'}>
                 <input value={align} onChange={e => setAlign(e.target.value)}/>
@@ -64,7 +64,7 @@ TextSetting.defaultProps = {
     y: '40%',
     width: '100%',
     height: '100%',
-    color: {type: 'solid', color: 'white'},
+    color: {type: 'solid', color: '#ffffff'},
     align: 'center',
     fontSize: '2em',
     fontFamily: 'Arial',

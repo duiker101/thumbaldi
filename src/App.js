@@ -2,7 +2,7 @@ import React from 'react'
 
 import styled from 'styled-components'
 import StateProvider from "./store/StateProvider";
-import Sidebar from "./components/sidebar/Sidebar";
+import Sidebar from "./components/Sidebar";
 import Board from "./components/Board";
 
 const Wrapper = styled.div`

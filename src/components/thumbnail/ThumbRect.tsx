@@ -17,7 +17,7 @@ const ThumbRect: React.FC<IRect> = (props) => {
             return (color as ISolidColor).color
         if (color.type === 'linear'){
             let c = color as ILinearGradient
-            let stops = c.stops[0].color + ', ' + c.stops[1].color
+            let stops = c.stops[1].color + ', ' + c.stops[0].color
             return `linear-gradient(${c.angle},${stops})`
         }
 

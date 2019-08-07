@@ -12,7 +12,7 @@ const Wrapper = styled.div<any>`
     font-size:${p => p.fontSize};
     font-weight:${p => p.fontWeight};
     font-family:${p => p.fontFamily};
-    color:${p => p.color ? p.color.color : 'white'}
+    color:${p => p.color ? p.color.color : '#ffffff'}
 `
 
 const ThumbText: React.FC<IText> = (props) => {

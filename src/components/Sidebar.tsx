@@ -1,10 +1,10 @@
 import React from 'react'
-import useThumbnail, {IRect, IText} from '../../store/ThumbnailContext'
+import useThumbnail, {IImage, IRect, IText} from '../store/ThumbnailContext'
 import styled from 'styled-components'
 import Scrollbars from 'react-custom-scrollbars';
-import LayerSetting from "./LayerSetting";
-import TextSetting from "./TextSetting";
-import RectSetting from "./RectSetting";
+import TextSetting from "./settings/TextSetting";
+import RectSetting from "./settings/RectSetting";
+import ImageSetting from "./settings/ImageSetting";
 
 const Wrapper = styled.div`
   width: 300px;
@@ -35,7 +35,9 @@ const Sidebar: React.FC = () => {
                             return <RectSetting key={l.id} {...l as IRect} />
                         if (l.type === 'text')
                             return <TextSetting key={l.id} {...l as IText} />
-                    return l.type
+                        if (l.type === 'image')
+                            return <ImageSetting key={l.id} {...l as IImage} />
+                        return l.type
                     }
                 )}
 

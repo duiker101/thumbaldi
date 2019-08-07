@@ -12,12 +12,12 @@ const Wrapper = styled.div``
 const ColorPicker: React.FC<Props> = (props) => {
     const [type, setType] = useState(props.color.type);
 
-    let defSolid: ISolidColor = {type: 'solid', color: 'red'}
+    let defSolid: ISolidColor = {type: 'solid', color: '#ff0000'}
 
     let defGradient: ILinearGradient = {
         type: 'linear',
         angle: '0deg',
-        stops: [{type: 'solid', color: 'red'}, {type: 'solid', color: 'white'}]
+        stops: [{type: 'solid', color: '#ff0000'}, {type: 'solid', color: '#ffffff'}]
     }
 
     if ((props.color as any).stops) {
@@ -47,7 +47,7 @@ const ColorPicker: React.FC<Props> = (props) => {
                 <option value={'linear'}>Gradient</option>
             </select>
             {type === 'solid' ?
-                <SolidColorPicker color={solid.color} onChange={c => setSolid(c)}/>
+                <SolidColorPicker color={solid} onChange={c => setSolid(c)}/>
                 : null}
             {type === 'linear' ?
                 <LinearGradientPicker color={gradient} onChange={c => setGradient(c)}/>

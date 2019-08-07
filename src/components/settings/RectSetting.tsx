@@ -1,16 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import styled from 'styled-components'
 import useThumbnail, {IColor, IRect} from "../../store/ThumbnailContext";
-import ColorSetting from "./ColorSetting";
-import PositionProperties from "./PositionProperties";
-import SizeProperties from "./SizeProperties";
-import TextSetting from "./TextSetting";
-import {Collapse} from "@blueprintjs/core";
-import Settings from "./Settings";
+import PositionProperties from "./common/PositionProperties";
+import SizeProperties from "./common/SizeProperties";
+import Settings from "./common/Settings";
 import ColorPicker from "../color/ColorPicker";
 
-const Wrapper = styled.div`
-`
 
 const RectSetting: React.FC<IRect> = (props) => {
     const {setLayer, getSelectedThumbnailId} = useThumbnail()
@@ -40,7 +35,7 @@ const RectSetting: React.FC<IRect> = (props) => {
 }
 
 RectSetting.defaultProps = {
-    fill: {type: 'solid', color: 'red'} as IColor,
+    fill: {type: 'solid', color: '#ff0000'} as IColor,
     x: '0px',
     y: '0px',
     width: '100%',

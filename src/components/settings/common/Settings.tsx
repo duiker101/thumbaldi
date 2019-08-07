@@ -24,11 +24,13 @@ const Settings: React.FC<Props> = (props) => {
     return (
         <Wrapper>
             <Header open={open} onClick={() => setOpen(!open)}>{props.title}</Header>
-            <Collapse isOpen={open}>
-                <Content>
+            {/*<Collapse isOpen={open}>*/}
+            {open &&
+                <Content >
                     {props.children}
                 </Content>
-            </Collapse>
+            }
+            {/*</Collapse>*/}
         </Wrapper>
     );
 }

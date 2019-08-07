@@ -2,6 +2,15 @@ import React, {useContext, useState} from 'react';
 import {produce} from "immer";
 import uuid4 from 'uuid4'
 
+export interface IIcon extends ISolid {
+    name: string
+    color: IColor
+}
+
+export interface IImage extends ISolid {
+    url: string
+    color: IColor
+}
 
 export interface IColor {
     type: string
@@ -60,14 +69,10 @@ const defaultValue = {
                     id: uuid4(),
                     index: 0,
                     type: 'rect',
-                    fill: {
-                        type: 'solid',
-                        color: 'red'
-                        // type: 'gradient',
-                        // stops: [{percentage: '0%', color: 'red'}, {percentage: '100%', color: 'blue'}]
-                    }
+                    fill: {type: 'solid', color: '#ff0000'}
                 },
-                {id: uuid4(), index: 1, type: 'text', text: 'Hello'}
+                {id: uuid4(), index: 1, type: 'text', text: 'Hello'},
+                {id: uuid4(), index: 2, type: 'image', url: 'https://cdn.svgporn.com/logos/vivaldi.svg'}
             ]
         }
     ]

@@ -21,11 +21,21 @@ body #root {
 
 input {
   border-radius: 2px;
-  border: none;
-  padding: 5px;
-  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3);
+  padding: 4px;
+  //box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.2);
+  border: 1px solid black;
+  background: #ffffff21;
+  color: white;
+  text-align: center;
+  max-width: 60px;
 
   &:focus {
     outline: none;
+  }
+
+  &.large {
+    max-width: none;
+    width: 85%;
+    text-align: left;
   }
 }

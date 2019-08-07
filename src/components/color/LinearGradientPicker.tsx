@@ -4,6 +4,7 @@ import {SketchPicker} from 'react-color';
 import styled from 'styled-components'
 import ColorButton from "./ColorButton";
 import {IColor, ILinearGradient, ISolidColor} from "../../store/ThumbnailContext";
+import SolidColorPicker from "./SolidColorPicker";
 
 const Wrapper = styled.div`
     display:grid;
@@ -17,22 +18,28 @@ const LinearGradientPicker: React.FC<Props> = (props) => {
     const [rotation, setRotation] = useState(props.color.angle)
 
     useEffect(() => {
-        console.log('linear', colors)
         props.onChange({type: 'linear', angle: rotation, stops: colors})
     }, [colors, rotation])
 
     return (
         <Wrapper>
-            <ColorButton color={colors[0].color}>
-                <SketchPicker color={colors[0].color} onChangeComplete={c => setColors(prev => {
-                    return {...prev, 0: {color: c.hex, type: 'solid'} as ISolidColor}
-                })}/>
-            </ColorButton>
-            <ColorButton color={colors[1].color}>
-                <SketchPicker color={colors[1].color} onChangeComplete={c => setColors(prev => {
-                    return {...prev, 1: {color: c.hex, type: 'solid'} as ISolidColor}
-                })}/>
-            </ColorButton>
+            {/*<ColorButton color={colors[0].color}>*/}
+            {/*    <SketchPicker color={colors[0].color} onChangeComplete={c => setColors(prev => {*/}
+            {/*        return {...prev, 0: {color: c.hex, type: 'solid'} as ISolidColor}*/}
+            {/*    })}/>*/}
+            {/*</ColorButton>*/}
+            {/*<ColorButton color={colors[1].color}>*/}
+            {/*    <SketchPicker color={colors[1].color} onChangeComplete={c => setColors(prev => {*/}
+            {/*        return {...prev, 1: {color: c.hex, type: 'solid'} as ISolidColor}*/}
+            {/*    })}/>*/}
+            {/*</ColorButton>*/}
+            <SolidColorPicker color={colors[0] as ISolidColor} onChange={c=>setColors(prev=>{
+                       return {...prev, 0: c as ISolidColor}
+            })}/>
+            <SolidColorPicker color={colors[1] as ISolidColor} onChange={c=>setColors(prev=>{
+                return {...prev, 1: c as ISolidColor}
+            })}/>
+            {/*<SolidColorPicker color={colors[0] as ISolidColor} />*/}
             <input
                 value={rotation}
                 onChange={(i) => setRotation(i.target.value)}
