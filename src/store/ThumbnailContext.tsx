@@ -12,7 +12,8 @@ export interface ISolidColor extends IColor {
 }
 
 export interface ILinearGradient extends IColor {
-    stops: any
+    stops: ISolidColor[]
+    angle: string
 }
 
 export interface IRect extends ISolid {

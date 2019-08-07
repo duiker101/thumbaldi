@@ -7,6 +7,7 @@ import SizeProperties from "./SizeProperties";
 import TextSetting from "./TextSetting";
 import {Collapse} from "@blueprintjs/core";
 import Settings from "./Settings";
+import ColorPicker from "../color/ColorPicker";
 
 const Wrapper = styled.div`
 `
@@ -20,6 +21,7 @@ const RectSetting: React.FC<IRect> = (props) => {
 
 
     useEffect(() => {
+        console.log(color)
         setLayer(getSelectedThumbnailId(), {
             ...props,
             fill: color,
@@ -32,7 +34,7 @@ const RectSetting: React.FC<IRect> = (props) => {
         <Settings title={'Rectangle'}>
             <PositionProperties x={x} y={y} onChange={(x, y) => setXY({x, y})}/>
             <SizeProperties {...{width, height}} onChange={(width, height) => setWH({width, height})}/>
-            <ColorSetting {...color}/>
+            <ColorPicker color={color} onChange={c => setColor(c)}/>
         </Settings>
     );
 }

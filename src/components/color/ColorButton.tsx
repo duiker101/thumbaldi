@@ -31,7 +31,7 @@ const Inner = styled.div`
 `
 
 
-const ColorButton = (props) => {
+const ColorButton: React.FC<Props> = (props) => {
     const [open, setOpen] = useState(false);
     return (<Wrapper>
             <Outer onClick={() => setOpen(!open)}>
@@ -47,9 +47,9 @@ const ColorButton = (props) => {
     );
 }
 
-ColorButton.propTypes = {
-    color: PropTypes.string,
-    onClick: PropTypes.func
-};
+interface Props {
+    color: string,
+    onClick?: () => void
+}
 
 export default ColorButton;

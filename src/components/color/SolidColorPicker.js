@@ -16,7 +16,7 @@ const SolidColorPicker = (props) => {
     return (
         <Wrapper>
             <ColorButton color={props.color}>
-                <SketchPicker color={props.color} onChangeComplete={(c) => props.onChange(c.hex)}/>
+                <SketchPicker color={props.color} onChangeComplete={(c) => props.onChange({type:'solid',color:c.hex})}/>
             </ColorButton>
         </Wrapper>
     );
